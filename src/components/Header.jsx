@@ -13,7 +13,7 @@ const Header = () => {
                 <h1 className="text-center text-3xl font-bold text-nepRed">Public Procurement Portal</h1>
                 <p className="text-center font-bold text-nepRed">Gwarko, Lalitpur</p>
             </header>
-            <img src="/images/Nepali_flag.gif" alt="Nepali National Flag" className="h-20 mx-auto my-4" />
+            <img src="/images/Nepali_Flag.gif" alt="Nepali National Flag" className="h-20 mx-auto my-4" />
         </div>
     </div>
   )
