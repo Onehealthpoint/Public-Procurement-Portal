@@ -19,7 +19,7 @@ type FormData = {
 const ApplyProcurement = () => {
     const priceRegex = /^\d*(\.\d{0,2})?$/
     const phoneRegex = /^\d{0,10}$/
-    const [submitted, setSubmitted] = useState(true)
+    const [submitted, setSubmitted] = useState(false)
     const [applicationId, setApplicationId] = useState("")
     const [data, setData] = useState<FormData>({
         name: "",
