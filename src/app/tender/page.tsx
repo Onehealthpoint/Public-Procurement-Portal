@@ -1,14 +1,15 @@
 'use client'
 
-import { DataTable, type TableData } from "@/components/data-table"
+import { DataTable } from "@/components/data-table"
 import { procurementData, procurementColumns } from "@/lib/data/data"
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function ProcurementPage() {
+function ProcurementPage() {
   const departments = ["education", "technology", "finance", "health", "transport", "energy", "agriculture", "legal"]
 
-  var paramVal = useSearchParams().get("department")
-  var id
+  const paramVal = useSearchParams().get("department")
+  let id
 
   if (paramVal === null || !departments.includes(paramVal)) {
     id = undefined
@@ -25,5 +26,17 @@ export default function ProcurementPage() {
         defaultSortValue={id}
       />
     </div>
+  )
+}
+
+function ViewLoading() {
+  return <div>Loading tender details...</div>
+}
+
+export default function ViewPage() {
+  return (
+    <Suspense fallback={<ViewLoading />}>
+      <ProcurementPage />
+    </Suspense>
   )
 }

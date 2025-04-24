@@ -91,7 +91,7 @@ const ApplyProcurement = () => {
                     required
                     value={data.phone} 
                     onChange={(e) => {
-                        var phoneVal = phoneRegex.test(e.target.value)? e.target.value : data.phone
+                        const phoneVal = phoneRegex.test(e.target.value)? e.target.value : data.phone
                         setData({...data, phone: phoneVal})
                     }} 
                     className=''
@@ -112,7 +112,7 @@ const ApplyProcurement = () => {
                     required
                     value={data.estimatedPrice} 
                     onChange={(e) => {
-                        var priceVal = priceRegex.test(e.target.value)? e.target.value : data.estimatedPrice
+                        const priceVal = priceRegex.test(e.target.value)? e.target.value : data.estimatedPrice
                         setData({...data, estimatedPrice: priceVal})
                     }} 
                     className=''
@@ -138,7 +138,7 @@ const ApplyProcurement = () => {
             
             {submitted && 
                 <div className='w-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-100 text-center p-4 rounded'>
-                    <div>"Application submitted successfully!"</div>
+                    <div>&quot;Application submitted successfully!&quot;</div>
                     <div className='text-xl font-bold mt-1'>{applicationId}</div>
                     <Button className='mt-6' onClick={()=>setSubmitted(false)}>Okay</Button>
                 </div>

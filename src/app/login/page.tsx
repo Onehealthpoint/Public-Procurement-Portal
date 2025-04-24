@@ -56,7 +56,7 @@ const LoginPage = () => {
     useEffect(() => {
         if(user)
             router.push('/')
-    },[user])
+    },[user, router])
 
     return(
         <div className='w-[99%] mx-auto bg-amber-50 p-4 py-12'>
@@ -98,7 +98,7 @@ const LoginPage = () => {
                                 }
                             </button>
                         </form>
-                        <p className='text-center mt-4'>Don't have an account? <span className='text-nepBlue cursor-pointer' onClick={() => setNewUser(true)}>Create Account</span></p>
+                        <p className='text-center mt-4'>Don&apos;t have an account? <span className='text-nepBlue cursor-pointer' onClick={() => setNewUser(true)}>Create Account</span></p>
                     </div>
                 )}
             </div>

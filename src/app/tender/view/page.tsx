@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState }  from 'react'
+import React, { Suspense, useEffect, useState }  from 'react'
 import { procurementData } from '@/lib/data/data'
 import { TableData } from '@/components/data-table'
 import { useSearchParams } from 'next/navigation'
@@ -34,7 +34,7 @@ const ViewProcurement = () => {
                 closingDate: "",
             })
         }
-    },[setData, procurementData, id])
+    },[setData, id])
 
     useEffect(() => {
         const calculateDaysRemaining = (closingDate: string) => {
@@ -121,4 +121,14 @@ const ViewProcurement = () => {
     )
 }
 
-export default ViewProcurement
+function ViewLoading() {
+    return <div>Loading tender details...</div>
+}
+
+export default function ViewPage() {
+    return(
+        <Suspense fallback={<ViewLoading/>}>
+            <ViewProcurement/>
+        </Suspense>
+    )
+}
