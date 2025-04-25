@@ -19,7 +19,7 @@ type FormData = {
 
 
 const ApplyProcurement = () => {
-    const { user } = AuthContext()
+    const { user, loading } = AuthContext()
     const router = useRouter()
 
     const priceRegex = /^\d*(\.\d{0,2})?$/
@@ -48,7 +48,7 @@ const ApplyProcurement = () => {
     }, [])
 
     useEffect(()=>{
-        if(!user)
+        if(!loading && !user)
             router.push('/login')
     }, [])
 
