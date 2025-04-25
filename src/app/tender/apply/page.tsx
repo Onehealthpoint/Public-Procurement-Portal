@@ -1,7 +1,9 @@
 'use client'
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, Suspense} from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import AuthContext from '@/lib/firebase/AuthContext'
+import { useRouter } from 'next/navigation'
 
 type FormData = {
     name: string
@@ -17,8 +19,12 @@ type FormData = {
 
 
 const ApplyProcurement = () => {
+    const { user } = AuthContext()
+    const router = useRouter()
+
     const priceRegex = /^\d*(\.\d{0,2})?$/
     const phoneRegex = /^\d{0,10}$/
+
     const [submitted, setSubmitted] = useState(false)
     const [applicationId, setApplicationId] = useState("")
     const [data, setData] = useState<FormData>({
@@ -39,6 +45,11 @@ const ApplyProcurement = () => {
         }
 
         setApplicationId(GenApplicationId())
+    }, [])
+
+    useEffect(()=>{
+        if(!user)
+            router.push('/login')
     }, [])
 
     return (
@@ -146,4 +157,22 @@ const ApplyProcurement = () => {
         </div>
     )
 }
-export default ApplyProcurement
+
+function ViewLoading() {
+    return (
+        <div className='w-[99%] mx-auto my-4 p-4 bg-amber-50 flex items-center justify-center'>
+            <div className='w-20 h-20 rounded-full border-b-2 border-b-white animate-spin'>
+
+            </div>
+        </div>
+    )
+  }
+  
+  // This is the only exported component from this file
+  export default function TenderPage() {
+    return (
+      <Suspense fallback={<ViewLoading />}>
+        <ApplyProcurement />
+      </Suspense>
+    )
+  }
